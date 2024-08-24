@@ -179,7 +179,7 @@ function VerifyDeactivateOtpPage() {
     return (
         <>
             <div className={Style.container}>
-                <h2 className={Style.title} onClick={handleQuizAppClick}>Quiz App</h2>
+                <h2 className={Style.title} onClick={handleQuizAppClick}>Quizzard</h2>
                 <div className={Style.profile} onMouseEnter={() => {setIsProfileOpen(true)}} onMouseLeave={() => {setIsProfileOpen(false)}}></div>
                     {isProfileOpen &&
                         <div className={Style.myAccountDiv} onMouseEnter={() => setIsProfileOpen(true)} onMouseLeave={() => {setIsProfileOpen(false)}}>

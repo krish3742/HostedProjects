@@ -167,7 +167,7 @@ function Login() {
     return (
         <>
             <div className={Style.container}>
-                <h2 className={Style.title}>Quiz App</h2>
+                <h2 className={Style.title}>Quizzard</h2>
                 <button className={Style.RegisterButton}><Link to='/auth/register' className={Style.link}>Register</Link></button>
             </div>
             <div className={Style.linear}>
