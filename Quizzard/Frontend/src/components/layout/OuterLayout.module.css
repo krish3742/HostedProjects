@@ -1,4 +1,6 @@
 .container {
+    margin: 0;
+    padding: 0;
     background-color: #0F0C2C;
     min-height: 100vh;
     display: flex;

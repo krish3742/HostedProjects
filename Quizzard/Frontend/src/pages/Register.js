@@ -146,45 +146,47 @@ function Register() {
     },[errors])
     return (
         <>
-            <div className={Style.container}>
+            <div className={Style.header}>
                 <h2 className={Style.title}>Quizzard</h2>
                 <button className={Style.LoginButton}><Link to='/auth/login' className={Style.link}>Login</Link></button>
             </div>
-            <div className={Style.linear}>
-                <div className={Style.body}>
-                    <h2 className={Style.heading}>Register yourself!</h2>
-                    <div>
-                        <label htmlFor='Name'></label>
-                        <input type='text' id='Name' value={name} className={Style.input} onChange={handleNameChange} placeholder='Name'></input>
-                    </div>
-                    <div>
-                        <label htmlFor='Email'></label>
-                        <input type='text' id='Email' value={email} className={Style.input} onChange={handleEmailChange} placeholder='Email ID'></input>
-                    </div>
-                    <div>
-                        <label htmlFor='Password'></label>
-                        <input type='password' id='Password' value={password} className={Style.input} onChange={handlePasswordChange} placeholder='Password'></input>
-                    </div>
-                    <div>
-                        <label htmlFor='Confirm_Password'></label>
-                        <input type='password' id='Confirm_Password' value={confirmPassword} className={Style.input} onChange={handleConfirmPasswordChange} placeholder='Confirm Password'></input>
-                    </div>
-                    <div className={Style.paraDiv}>
-                        <p className={Style.para}>Note: Password must be 8 characters long, including 1 upper case alphabet, 1 lower case alphabet, and 1 special character.</p>
-                    </div>
-                    {errors.length > 0 && !errors.includes("Testing") && 
-                        <div className={Style.instructionParaDiv}>
-                            <ul>
-                                {errors.map(message =>  {
-                                    return <li key={message}>{message}</li>
-                                })}
-                            </ul>
+            <div className={Style.container}>
+                <div className={Style.linear}>
+                    <div className={Style.body}>
+                        <h2 className={Style.heading}>Register yourself!</h2>
+                        <div>
+                            <label htmlFor='Name'></label>
+                            <input type='text' id='Name' value={name} className={Style.input} onChange={handleNameChange} placeholder='Name'></input>
                         </div>
-                    }
-                    <button type='submit' className={Style.RegisterButton} onClick={handleRegisterClick}>Register</button>
-                </div>
-                <div className={Style.imgDiv}>
-                    <div className={Style.img}></div>
+                        <div>
+                            <label htmlFor='Email'></label>
+                            <input type='text' id='Email' value={email} className={Style.input} onChange={handleEmailChange} placeholder='Email ID'></input>
+                        </div>
+                        <div>
+                            <label htmlFor='Password'></label>
+                            <input type='password' id='Password' value={password} className={Style.input} onChange={handlePasswordChange} placeholder='Password'></input>
+                        </div>
+                        <div>
+                            <label htmlFor='Confirm_Password'></label>
+                            <input type='password' id='Confirm_Password' value={confirmPassword} className={Style.input} onChange={handleConfirmPasswordChange} placeholder='Confirm Password'></input>
+                        </div>
+                        <div className={Style.paraDiv}>
+                            <p className={Style.para}>Note: Password must be 8 characters long, including 1 upper case alphabet, 1 lower case alphabet, and 1 special character.</p>
+                        </div>
+                        {errors.length > 0 && !errors.includes("Testing") && 
+                            <div className={Style.instructionParaDiv}>
+                                <ul>
+                                    {errors.map(message =>  {
+                                        return <li key={message}>{message}</li>
+                                    })}
+                                </ul>
+                            </div>
+                        }
+                        <button type='submit' className={Style.RegisterButton} onClick={handleRegisterClick}>Register</button>
+                    </div>
+                    <div className={Style.imgDiv}>
+                        <div className={Style.img}></div>
+                    </div>
                 </div>
             </div>
             {isLoading && 

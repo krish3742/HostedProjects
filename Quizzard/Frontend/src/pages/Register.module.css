@@ -1,13 +1,26 @@
-.container {
+.header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: default;
+    padding: 0 3rem 0 3rem;
 }
 
-.title {
-    margin-left: 3rem;
-    margin-top: 2rem;
+.LoginButton {
+    height: 2.5rem;
+    width: 7rem;
+    border-radius: 50px;
+    font-size: large;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.container {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .linear {
@@ -15,40 +28,34 @@
     min-height: 75vh;
     border-radius: 15px;
     border: 1px solid white;
-    margin-left: 4.5rem;
     background-image: linear-gradient(to bottom right, #080E2F, #14257B);
     display: flex;
-    margin-bottom: 1.5rem;
     cursor: default;
 }
 
-.LoginButton {
-    margin-right: 4.25rem;
-    height: 2.5rem;
-    width: 7rem;
-    border-radius: 50px;
-    font-size: large;
-    border: none;
-    margin-top: .8rem;
-    background-color: white;
-}
-
-.LoginButton:hover {
-    cursor: pointer;
-} 
-
-.RegisterButton:hover {
-    cursor: pointer;
-}
-
-.img {
-    height: 345px;
-    width: 345px;
-    background-image: url('../../public/Image.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    margin-top: 4.5rem;
-    rotate: -12.5deg;
+@media screen and (min-width: 825px) {
+    .body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 50%;
+    }
+    
+    .imgDiv {
+        display: flex;
+        align-items: center;
+        width: 50%;
+    }
+    
+    .img {
+        height: 20rem;
+        width: 20rem;
+        background-image: url('../../public/Image.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        rotate: -12.5deg;
+    }
 }
 
 .body {
@@ -56,7 +63,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 60%;
+    width: 100%;
 }
 
 .input {
@@ -72,13 +79,6 @@
     border: none;
     border-radius: 5px ;
     color: #e3e3e3;
-}
-
-.imgDiv {
-    display: flex;
-    align-items: center;
-    width: 40%;
-    left: 50%;
 }
 
 .paraDiv {
