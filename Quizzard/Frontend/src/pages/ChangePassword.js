@@ -160,15 +160,14 @@ function Register() {
     return (
         <>
             <div className={Style.container}>
-                <h2 className={Style.title} onClick={handleQuizAppClick}>Quizzard</h2>
+                <h2 className={Style.title} onClick={handleQuizAppClick}>Quiz App</h2>
                 <div className={Style.profile} onMouseEnter={() => {setIsProfileOpen(true)}} onMouseLeave={() => {setIsProfileOpen(false)}}></div>
                     {isProfileOpen &&
                         <div className={Style.myAccountDiv} onMouseEnter={() => setIsProfileOpen(true)} onMouseLeave={() => {setIsProfileOpen(false)}}>
                             <p className={Style.options} onClick={handleMyAccountClick}>My Account</p>
                             <p className={Style.options} onClick={handleLogoutClick}> Logout</p>
                         </div>
-                    }            
-                </div>
+                    }            </div>
             <div className={Style.linear}>
                 <div className={Style.body}>
                     <h2 className={Style.heading}>Change password!</h2>

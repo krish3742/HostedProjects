@@ -110,7 +110,7 @@ function ResetPassword() {
     return (
         <>
             <div className={Style.container}>
-                <h2 className={Style.title}>Quizzard</h2>
+                <h2 className={Style.title}>Quiz App</h2>
                 <button className={Style.LoginButton}><Link to='/auth/login' className={Style.link}>Login</Link></button>
             </div>
             <div className={Style.linear}>

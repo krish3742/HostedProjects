@@ -138,7 +138,7 @@ function ExamPage() {
     return (
         <>
             <div className={Style.container}>
-                <h2 className={Style.title}>Quizzard</h2>
+                <h2 className={Style.title}>Quiz App</h2>
             </div>
             <div className={Style.linear}>
                 <h2 className={Style.heading}>{quiz?.name}</h2>
