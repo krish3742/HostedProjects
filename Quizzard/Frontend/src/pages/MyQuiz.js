@@ -26,7 +26,7 @@ function MyQuiz() {
         e.preventDefault();
         setIsLoading(true);
         axios
-            .delete(`http://${process.env.REACT_APP_BACKEND_URL}/quiz/${id}`, { headers })
+            .delete(`${process.env.REACT_APP_BACKEND_URL}/quiz/${id}`, { headers })
             .then(() => {
                 setFlag(!flag);
             })
@@ -45,7 +45,7 @@ function MyQuiz() {
     useEffect(() => {
         if(!!quizId) {
             axios
-                .get(`http://${process.env.REACT_APP_BACKEND_URL}/quiz/${quizId}`, { headers })
+                .get(`${process.env.REACT_APP_BACKEND_URL}/quiz/${quizId}`, { headers })
                 .then((response) => {
                     setIsLoading(false);
                     navigate('/auth/quiz/update', { state: { token, quizId }});
@@ -59,7 +59,7 @@ function MyQuiz() {
             navigate('/auth/quiz/view', { state: { token, viewQuizId}});
         }
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/quiz`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/quiz`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setMyQuizList(response?.data?.data);

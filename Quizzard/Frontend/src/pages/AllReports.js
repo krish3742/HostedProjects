@@ -21,7 +21,7 @@ function Reports() {
     useEffect(() => {
         if(!tempReports) {
             axios
-                .get(`http://${process.env.REACT_APP_BACKEND_URL}/report`, { headers })
+                .get(`${process.env.REACT_APP_BACKEND_URL}/report`, { headers })
                 .then((response) => {
                     setFlag(!flag);
                     setTempReports(response?.data?.data);
@@ -33,7 +33,7 @@ function Reports() {
         } else if(!!tempReports) {
             tempReports.map((report) => {
                 axios
-                    .get(`http://${process.env.REACT_APP_BACKEND_URL}/quiz/name/${report?.quizId}`, { headers })
+                    .get(`${process.env.REACT_APP_BACKEND_URL}/quiz/name/${report?.quizId}`, { headers })
                     .then((response) => {
                         setIsLoading(false);
                         setReports((oldArray) => [...oldArray, {...report, quizName: response?.data?.data?.name}]);

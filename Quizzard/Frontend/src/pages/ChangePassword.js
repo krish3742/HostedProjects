@@ -101,7 +101,7 @@ function Register() {
     useEffect(() => {
         if(errors.length === 0) {
             axios
-                .put(`http://${process.env.REACT_APP_BACKEND_URL}/user/changepassword`, {currentPassword, newPassword, confirmPassword}, { headers })
+                .put(`${process.env.REACT_APP_BACKEND_URL}/user/changepassword`, {currentPassword, newPassword, confirmPassword}, { headers })
                 .then((response) => {
                     setIsLoading(false);
                     success("Password successfully changed, redirecting...");

@@ -35,7 +35,7 @@ function ChangeName() {
         evt.preventDefault();
         setIsLoading(true);
         axios
-            .patch(`http://${process.env.REACT_APP_BACKEND_URL}/user/deactivate`, {}, { headers })
+            .patch(`${process.env.REACT_APP_BACKEND_URL}/user/deactivate`, {}, { headers })
             .then((response) => {
                 setIsLoading(false);
                 navigate('/auth/user/deactivateaccount', { state: { token }})
@@ -61,7 +61,7 @@ function ChangeName() {
     useEffect(() => {
         if(!!token) {
             axios
-                .get(`http://${process.env.REACT_APP_BACKEND_URL}/user`, { headers })
+                .get(`${process.env.REACT_APP_BACKEND_URL}/user`, { headers })
                 .then((response) => {
                     setIsLoading(false);
                     const data = response.data.data;
@@ -74,7 +74,7 @@ function ChangeName() {
         }
         if(flag) {
             axios
-                .put(`http://${process.env.REACT_APP_BACKEND_URL}/user`, { name }, { headers })
+                .put(`${process.env.REACT_APP_BACKEND_URL}/user`, { name }, { headers })
                 .then((response) => {
                     setIsLoading(false);
                     navigate('/auth/user/my-account', { state: { token }})

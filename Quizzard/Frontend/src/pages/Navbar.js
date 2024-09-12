@@ -16,7 +16,7 @@ function Navbar(props) {
         evt.preventDefault();
         setIsLoading(true);
         axios
-            .post(`http://${process.env.REACT_APP_BACKEND_URL}/user/logout`, {}, { headers })
+            .post(`${process.env.REACT_APP_BACKEND_URL}/user/logout`, {}, { headers })
             .then(() => {
                 setIsLoading(false);
                 navigate('/auth/login');

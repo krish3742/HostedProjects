@@ -23,7 +23,7 @@ function PublishQuiz() {
     useEffect(() => {
         if(!!quizId) {
             axios
-                .patch(`http://${process.env.REACT_APP_BACKEND_URL}/quiz/publish`, { quizId }, { headers })
+                .patch(`${process.env.REACT_APP_BACKEND_URL}/quiz/publish`, { quizId }, { headers })
                 .then((response) => {
                     setQuizId("");
                     setFlag(!flag);
@@ -35,7 +35,7 @@ function PublishQuiz() {
                 })
         }
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/quiz`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/quiz`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setMyQuizList(response?.data?.data);

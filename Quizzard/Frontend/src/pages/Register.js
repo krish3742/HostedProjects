@@ -110,7 +110,7 @@ function Register(props) {
     useEffect(() => {
         if(errors.length === 0) {
             axios
-                .post(`http://${process.env.REACT_APP_BACKEND_URL}/auth`, data)
+                .post(`${process.env.REACT_APP_BACKEND_URL}/auth`, data)
                 .then((response) => {
                     setIsLoading(false);
                     if(response.data.message === "OTP has sent on your email. Please Verify") {

@@ -21,7 +21,7 @@ function Reports() {
     }
     useEffect(() => {
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/report/${reportId}`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/report/${reportId}`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setReport(response?.data?.data);

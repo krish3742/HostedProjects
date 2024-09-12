@@ -21,7 +21,7 @@ function ViewQuiz() {
     const headers = {'Authorization': `Bearer ${token}`};
     useEffect(() => {
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/quiz/${quizId}`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/quiz/${quizId}`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 const quiz = response?.data?.data; 
@@ -39,7 +39,7 @@ function ViewQuiz() {
                 navigate('/auth/login');
             });
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/user/all`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/user/all`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setUsers(response?.data?.data);

@@ -65,7 +65,7 @@ function ActivateAccount() {
     useEffect(() => {
         if(!!key && key.length === 8 && errors.length === 0) {
             axios
-                .post(`http://${process.env.REACT_APP_BACKEND_URL}/auth/activateaccount`, {email, key})
+                .post(`${process.env.REACT_APP_BACKEND_URL}/auth/activateaccount`, {email, key})
                 .then((response) => {
                     setIsLoading(false);
                     success('Account activated, please login');

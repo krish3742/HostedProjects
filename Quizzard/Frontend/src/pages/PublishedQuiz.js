@@ -22,7 +22,7 @@ function PublishedQuiz() {
     }
     useEffect(() => {
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/quiz/allpublishedquiz/exam`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/quiz/allpublishedquiz/exam`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setQuizExam(response?.data?.data);
@@ -32,7 +32,7 @@ function PublishedQuiz() {
                 navigate('/auth/login');
             })
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/quiz/allpublishedquiz/test`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/quiz/allpublishedquiz/test`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setQuizTest(response?.data?.data);

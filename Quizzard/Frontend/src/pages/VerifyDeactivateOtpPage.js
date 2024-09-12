@@ -104,7 +104,7 @@ function VerifyDeactivateOtpPage() {
             const otpToNumber = parseInt(otp);
             if(otpToNumber) {
                 axios
-                    .post(`http://${process.env.REACT_APP_BACKEND_URL}/user/deactivate/verify-deactivate-account-otp`, { otp }, { headers })
+                    .post(`${process.env.REACT_APP_BACKEND_URL}/user/deactivate/verify-deactivate-account-otp`, { otp }, { headers })
                     .then((response) => {
                         setIsLoading(false);
                         success('Account deactivated, redirecting...');

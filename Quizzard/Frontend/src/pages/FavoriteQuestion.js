@@ -16,7 +16,7 @@ function FavoriteQuestion() {
     function handleRemoveFavouriteClick(id, e) {
         setIsLoading(true);
         axios
-            .delete(`http://${process.env.REACT_APP_BACKEND_URL}/favquestion/${id}`, { headers })
+            .delete(`${process.env.REACT_APP_BACKEND_URL}/favquestion/${id}`, { headers })
             .then(() => {
                 setIsLoading(false);
                 setFlag(!flag);
@@ -28,7 +28,7 @@ function FavoriteQuestion() {
     }
     useEffect(() => {
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/favquestion`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/favquestion`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setFavQues(response?.data?.data?.favQues);

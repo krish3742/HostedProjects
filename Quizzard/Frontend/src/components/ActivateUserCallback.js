@@ -11,7 +11,7 @@ function ActivateUserCallback() {
             navigate('/auth/register');
         } else if(!!token) {
             axios
-                .get(`http://${process.env.REACT_APP_BACKEND_URL}/auth/activate/${token}`)
+                .get(`${process.env.REACT_APP_BACKEND_URL}/auth/activate/${token}`)
                 .then((response) => {
                     navigate('/auth/login', { state: { message: "Account activated, login!" }});
                 })

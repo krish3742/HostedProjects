@@ -29,7 +29,7 @@ function MyAccount() {
         evt.preventDefault();
         setIsLoading(true);
         axios
-            .patch(`http://${process.env.REACT_APP_BACKEND_URL}/user/deactivate`, {}, { headers })
+            .patch(`${process.env.REACT_APP_BACKEND_URL}/user/deactivate`, {}, { headers })
             .then((response) => {
                 setIsLoading(false);
                 navigate('/auth/user/deactivateaccount', { state: { token }})
@@ -52,7 +52,7 @@ function MyAccount() {
     useEffect(() => {
         if(!!token) {
             axios
-                .get(`http://${process.env.REACT_APP_BACKEND_URL}/user`, { headers })
+                .get(`${process.env.REACT_APP_BACKEND_URL}/user`, { headers })
                 .then((response) => {
                     setIsLoading(false);
                     const data = response.data.data;

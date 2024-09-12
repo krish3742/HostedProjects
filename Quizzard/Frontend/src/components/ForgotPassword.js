@@ -7,9 +7,8 @@ function ForgotPasword() {
     const token = params.token;
     const navigate = useNavigate();
     useEffect(() => {
-        console.log('hey');
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/auth/forgotpassword/${token}`)
+            .get(`${process.env.REACT_APP_BACKEND_URL}/auth/forgotpassword/${token}`)
             .then((response) => {
                 const message = response?.data?.message;
                 const messageArray = message.split('/');

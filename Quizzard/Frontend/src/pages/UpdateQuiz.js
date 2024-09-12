@@ -269,7 +269,7 @@ function UpdateQuiz() {
     useEffect(() => {
         if(errors.length === 0) {
             axios
-                .put(`http://${process.env.REACT_APP_BACKEND_URL}/quiz`, data, { headers })
+                .put(`${process.env.REACT_APP_BACKEND_URL}/quiz`, data, { headers })
                 .then((response) => {
                     setIsLoading(false);
                     success('Quiz updated, redirecting...')
@@ -297,7 +297,7 @@ function UpdateQuiz() {
         }
         if(!!quizId) {
             axios
-                .get(`http://${process.env.REACT_APP_BACKEND_URL}/quiz/${quizId}`, { headers })
+                .get(`${process.env.REACT_APP_BACKEND_URL}/quiz/${quizId}`, { headers })
                 .then((response) => {
                     setQuizId("");
                     setIsLoading(false);
@@ -320,7 +320,7 @@ function UpdateQuiz() {
             setAllowedUser(['']);
         }    
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/user/all`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/user/all`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setUsers(response?.data?.data);

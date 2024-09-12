@@ -304,7 +304,7 @@ function CreateQuiz() {
     useEffect(() => {
         if(errors.length === 0) {
             axios
-                .post(`http://${process.env.REACT_APP_BACKEND_URL}/quiz`, data, { headers })
+                .post(`${process.env.REACT_APP_BACKEND_URL}/quiz`, data, { headers })
                 .then((response) => {
                     setIsLoading(false);
                     success('Quiz created, redirecting...');
@@ -331,7 +331,7 @@ function CreateQuiz() {
             setIsLoading(false);
         }
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/user/all`, { headers })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/user/all`, { headers })
             .then((response) => {
                 setIsLoading(false);
                 setUsers(response?.data?.data);

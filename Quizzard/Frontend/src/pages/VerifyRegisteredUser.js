@@ -46,7 +46,7 @@ function VerifyRegisteredUser() {
         setErrors([]);
         setIsLoading(true);
         axios
-            .get(`http://${process.env.REACT_APP_BACKEND_URL}/auth/resend-registration-otp/${token}`)
+            .get(`${process.env.REACT_APP_BACKEND_URL}/auth/resend-registration-otp/${token}`)
             .then((response) => { 
                 setIsLoading(false);
                 success('OTP has been send successfully!') 
@@ -123,7 +123,7 @@ function VerifyRegisteredUser() {
             const otpToNumber = parseInt(otp);
             if(otpToNumber) {
                 axios
-                    .post(`http://${process.env.REACT_APP_BACKEND_URL}/auth/verify-registration-otp/${token}`, { otp })
+                    .post(`${process.env.REACT_APP_BACKEND_URL}/auth/verify-registration-otp/${token}`, { otp })
                     .then((response) => {
                         setIsLoading(false);
                         success('Account registered, please login!');
