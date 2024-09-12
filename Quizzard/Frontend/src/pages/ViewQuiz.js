@@ -59,19 +59,19 @@ function ViewQuiz() {
                 <h2 className="pageTitle">Quiz</h2>
                 <div className="heroContainerContent">
                     <h4 className="heroTitle">Quiz Name *</h4>
-                    <p className="heroInput">{name}</p>
+                    <input className="heroInput" value={name} disabled></input>
                 </div>
                 <div className="heroContainerContent">
                     <h4 className="heroTitle">Category *</h4>
-                    <p className="heroInput">{category === "exam" ? "Exam" : "Test"}</p>
+                    <input className="heroInput" value={category === "exam" ? "Exam" : "Test"} disabled></input>
                 </div>
                 <div className="heroContainerContent">
                     <h4 className="heroTitle">Passing Percentage *</h4>
-                    <p className="heroInput">{passingPercentage}</p>
+                    <input className="heroInput" value={passingPercentage} disabled></input>
                 </div>
                 <div className="heroContainerContent">
                     <h4 className="heroTitle">Is this is a public quiz? *</h4>
-                    <p className="heroInput">{isPublicQuiz ? "True" : "False"}</p>
+                    <input className="heroInput" value={isPublicQuiz ? "True" : "False"} disabled></input>
                 </div>
                 {isPublicQuiz === false &&
                     <div className="heroContainerContent">
@@ -83,7 +83,8 @@ function ViewQuiz() {
                                         <span id={index}>{index + 1}: </span>
                                         {users?.map((user) => {
                                             if(user?._id === value) {
-                                                return <p className="heroInput" key={value}>{value}: {user?.name}</p>
+                                                const result = `${value}: ${user.name}`;
+                                                return <input className="heroInput" key={value} value={result} disabled></input>
                                             }
                                         })}
                                     </div>
@@ -97,21 +98,21 @@ function ViewQuiz() {
                         return (
                             <div className="heroContainerContent" key={list.questionNumber}>
                                 <h4 className="heroTitle">Question {list.questionNumber}: *</h4>
-                                <p className="heroInput">{list.question}</p>
+                                <input className="heroInput" value={list.question} disabled></input>
                                 <h4 className="heroTitle">Options</h4>
                                 {!!list.options &&
                                     Object.keys(list.options).map(function (key) {
                                         return (
                                             <div className="heroOptionDiv" key={key}>
                                                 <span key={key}>{key}: </span>
-                                                <p className="heroInput">{list.options[key]}</p>
+                                                <input className="heroInput" value={list.options[key]} disabled></input>
                                             </div>
                                         );
                                     })
                                 }
                                 <div className="heroOptionDiv">
                                     <h4 className="heroTitle">Answer: </h4>
-                                    <p className="heroInput">{answers[list.questionNumber]}</p>
+                                    <input className="heroInput" value={answers[list.questionNumber]} disabled></input>
                                 </div>
                             </div>
                         );
