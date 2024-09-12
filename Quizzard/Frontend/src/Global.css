@@ -282,15 +282,15 @@
 }
 
 .loading {
-    position: absolute;
+    position: fixed;
     min-width: 100%;
     min-height: 100%;
     background-color: rgba(255, 255, 255, 0.5);
-    overflow-y:scroll;
-    overflow-x:hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
+    top: 0;
 }
 
 .loader {
