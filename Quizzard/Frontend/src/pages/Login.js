@@ -62,7 +62,7 @@ function Login() {
     useEffect(() => {
         if(errors.length === 0) {
             axios
-                .post(`http://${process.env.REACT_APP_BACKEND_URL}/auth/login`, { email, password })
+                .post(`https://${process.env.REACT_APP_BACKEND_URL}/auth/login`, { email, password })
                 .then((response) => {
                     setIsLoading(false);
                     const token = response?.data?.data?.token;
