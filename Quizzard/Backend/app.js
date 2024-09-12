@@ -23,7 +23,7 @@ const user_1 = __importDefault(require("./routes/user"));
 const favQuestion_1 = __importDefault(require("./routes/favQuestion"));
 const clearBlacklistedTokenScheduler_1 = __importDefault(require("./utils/clearBlacklistedTokenScheduler"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)({ origin: `https://${process.env.CORS_ORIGIN_URL}`, credentials: true }));
+app.use((0, cors_1.default)({ origin: `http://${process.env.CORS_ORIGIN_URL}`, credentials: true }));
 const connectionString = process.env.CONNECTION_STRING || "";
 const port = process.env.PORT;
 app.use(express_1.default.json());
