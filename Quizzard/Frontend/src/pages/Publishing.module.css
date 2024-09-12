@@ -72,6 +72,12 @@
     border: 1px solid white;
 }
 
+@media screen and (max-width: 640px) {
+    .heroContainerContent {
+        flex-direction: column;
+    }
+}
+
 @media screen and (max-width:325px) {
     .confirmationDiv {
         width: 95%;
