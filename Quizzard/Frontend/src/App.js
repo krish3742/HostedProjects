@@ -57,8 +57,8 @@ function App() {
         <Route path='/auth/user/deactivateaccount' element={<VerifyDeactivateOtpPage />}></Route>
         <Route path='/auth/activateuser' element={<ActivateUser />}></Route>
         <Route path='/auth/activate/:token' element={<ActivateUserCallback />}></Route>
-        
-        {/* <Route path='*' element={<Navigate to='/auth/register' />}></Route> */}
+
+        <Route path='*' element={<Navigate to='/auth/register' />}></Route>
       </Routes>
     </OuterLayout>
   );
