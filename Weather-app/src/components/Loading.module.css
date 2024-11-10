@@ -1,0 +1,24 @@
+.container {
+  position: relative;
+}
+
+.bgImage {
+  background-image: url("../pictures/bg-image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: calc(100vh - 4rem);
+}
+
+.loadingContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+  height: calc(100vh - 4rem);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.25;
+}

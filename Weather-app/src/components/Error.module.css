@@ -1,0 +1,12 @@
+.container {
+  background-color: rgb(228, 234, 242);
+  height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 1rem;
+  font-size: larger;
+  font-weight: bold;
+}
