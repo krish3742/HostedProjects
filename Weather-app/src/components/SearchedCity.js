@@ -7,7 +7,6 @@ import Style from "./SearchedCity.module.css";
 function SearchedCity() {
   const context = useContext(Context);
   const data = context.data;
-  console.log(data);
   const timeStamp = new Date();
   const hour =
     timeStamp.getHours() > 12
