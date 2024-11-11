@@ -25,7 +25,7 @@
   justify-content: center;
 }
 
-.iconContainer {
+.borderIconContainer {
   background-color: white;
   color: black;
   width: fit-content;
@@ -36,6 +36,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.iconContainer {
+  background-color: white;
+  color: black;
+  width: fit-content;
+  padding: 7.5px;
+  height: 2.25rem;
+  border-top-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.borderInput {
+  color: black;
+  border: none;
+  outline: none;
+  width: 20rem;
+  height: 2.25rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .input {
@@ -49,7 +79,6 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 .button {

@@ -1,0 +1,71 @@
+.visibleContainer {
+  position: absolute;
+  top: 2.25rem;
+  left: -2rem;
+  width: 22.05rem;
+  height: fit-content;
+  max-height: 9.5rem;
+  overflow-y: auto;
+  color: black;
+  background-color: white;
+  z-index: 10;
+  border: black solid 1px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.hiddenContainer {
+  display: none;
+}
+
+.dataContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+.city {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.details {
+  font-weight: 500;
+}
+
+.dataContainer:hover {
+  background-color: aquamarine;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .visibleContainer {
+    width: 19.55rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .visibleContainer {
+    width: 17.05rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .visibleContainer {
+    width: 15.05rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .visibleContainer {
+    width: 12.05rem;
+  }
+}
