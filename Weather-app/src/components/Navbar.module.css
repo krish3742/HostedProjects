@@ -79,6 +79,7 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 10px;
+  border-bottom-right-radius: 0;
 }
 
 .button {
@@ -98,25 +99,29 @@
 }
 
 @media screen and (max-width: 800px) {
-  .input {
+  .input,
+  .borderInput {
     width: 17.5rem;
   }
 }
 
 @media screen and (max-width: 700px) {
-  .input {
+  .input,
+  .borderInput {
     width: 15rem;
   }
 }
 
 @media screen and (max-width: 450px) {
-  .input {
+  .input,
+  .borderInput {
     width: 13rem;
   }
 }
 
 @media screen and (max-width: 350px) {
-  .input {
+  .input,
+  .borderInput {
     width: 10rem;
   }
 }
