@@ -13,9 +13,11 @@ function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const handleSearchClick = (e) => {
     e.preventDefault();
-    context.setInput(input);
-    context.setData({});
-    context.setLoading(true);
+    if (input.trim()) {
+      context.setInput(input.trim());
+      context.setData({});
+      context.setLoading(true);
+    }
   };
   useEffect(() => {
     if (navigator.geolocation && context.input === "Lucknow") {
