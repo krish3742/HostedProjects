@@ -13,21 +13,24 @@ function Home() {
   const data = context.data;
   const loading = context.loading;
   const fetch = async () => {
-    const options = {
-      method: "GET",
-      url: "https://weatherapi-com.p.rapidapi.com/current.json",
-      params: { q: input },
-      headers: {
-        "x-rapidapi-key": "4d1bd655e7msh5086aad4d2b3127p190718jsnfe55a3957a04",
-        "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
-      },
-    };
-    try {
-      const response = await axios.request(options);
-      context.setData(response.data);
-      context.setLoading(false);
-    } catch (error) {
-      context.setLoading(false);
+    if (input.trim()) {
+      const options = {
+        method: "GET",
+        url: "https://weatherapi-com.p.rapidapi.com/current.json",
+        params: { q: input },
+        headers: {
+          "x-rapidapi-key":
+            "4d1bd655e7msh5086aad4d2b3127p190718jsnfe55a3957a04",
+          "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
+        },
+      };
+      try {
+        const response = await axios.request(options);
+        context.setData(response.data);
+        context.setLoading(false);
+      } catch (error) {
+        context.setLoading(false);
+      }
     }
   };
   useEffect(() => {

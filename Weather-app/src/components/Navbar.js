@@ -47,11 +47,16 @@ function Navbar() {
   };
   useEffect(() => {
     if (navigator.geolocation && context.input === "Lucknow") {
-      navigator.geolocation.getCurrentPosition((position) => {
-        context.setInput(
-          position.coords.latitude + "," + position.coords.longitude
-        );
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          context.setInput(
+            position.coords.latitude + "," + position.coords.longitude
+          );
+        },
+        (error) => {
+          context.setInput("");
+        }
+      );
     } else if (input.trim()) {
       context.setCityLoading(true);
       citiesList();
