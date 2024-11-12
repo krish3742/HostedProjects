@@ -35,7 +35,7 @@ function Home() {
   };
   useEffect(() => {
     fetch();
-  }, [input]);
+  }, [input, loading]);
   if (loading) {
     return <Loading />;
   }
