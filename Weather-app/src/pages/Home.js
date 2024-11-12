@@ -29,7 +29,6 @@ function Home() {
         context.setData(response.data);
         context.setLoading(false);
       } catch (error) {
-        console.log(error);
         context.setLoading(false);
       }
     }
