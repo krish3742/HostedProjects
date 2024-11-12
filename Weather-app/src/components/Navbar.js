@@ -57,6 +57,8 @@ function Navbar() {
           context.setInput("Lucknow");
         }
       );
+    } else if (!navigator.geolocation) {
+      context.setInput("Lucknow");
     } else if (input.trim()) {
       context.setCityLoading(true);
       citiesList();
