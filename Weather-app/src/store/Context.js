@@ -14,7 +14,7 @@ const Context = createContext({
 });
 
 export function AllContext({ children }) {
-  const [element, setElement] = useState("Lucknow");
+  const [element, setElement] = useState("NpeUV00HVI");
   const [result, setResult] = useState({});
   const [loadingState, setLoadingState] = useState(true);
   const [cities, setCities] = useState([]);

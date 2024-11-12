@@ -46,7 +46,7 @@ function Navbar() {
     }
   };
   useEffect(() => {
-    if (navigator.geolocation && context.input === "Lucknow") {
+    if (navigator.geolocation && context.input === "NpeUV00HVI") {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           context.setInput(
@@ -54,7 +54,7 @@ function Navbar() {
           );
         },
         (error) => {
-          context.setInput("");
+          context.setInput("Lucknow");
         }
       );
     } else if (input.trim()) {

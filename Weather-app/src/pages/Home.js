@@ -13,7 +13,7 @@ function Home() {
   const data = context.data;
   const loading = context.loading;
   const fetch = async () => {
-    if (input.trim()) {
+    if (input.trim() && input !== "NpeUV00HVI") {
       const options = {
         method: "GET",
         url: "https://weatherapi-com.p.rapidapi.com/current.json",
@@ -29,6 +29,7 @@ function Home() {
         context.setData(response.data);
         context.setLoading(false);
       } catch (error) {
+        console.log(error);
         context.setLoading(false);
       }
     }
