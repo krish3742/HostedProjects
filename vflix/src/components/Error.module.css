@@ -1,0 +1,13 @@
+.error {
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.message {
+  padding-top: 10rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}

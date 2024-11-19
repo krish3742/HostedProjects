@@ -1,0 +1,15 @@
+.container {
+  background-color: black;
+  height: fit-content;
+  color: white;
+}
+
+.absolute {
+  position: relative;
+  z-index: 1;
+  top: -5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow: hidden;
+}

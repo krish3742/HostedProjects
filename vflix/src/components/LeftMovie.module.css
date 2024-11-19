@@ -1,0 +1,16 @@
+.container {
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  width: 2.5rem;
+}
+
+.image {
+  position: absolute;
+  height: 325px;
+  width: 225px;
+  object-fit: cover;
+  object-position: right;
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  animation: slide-in-right 5s linear;
+}

@@ -1,0 +1,15 @@
+.container {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  width: 2.5rem;
+}
+
+.image {
+  position: absolute;
+  height: 325px;
+  width: 225px;
+  object-fit: cover;
+  object-position: left;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}

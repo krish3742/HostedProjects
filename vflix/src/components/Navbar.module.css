@@ -9,24 +9,26 @@
   justify-content: space-between;
   align-items: center;
   animation: blackbg 0.3s linear alternate both;
+  z-index: 10;
 }
 
 .navTransparent {
   width: 100%;
   height: 65px;
-  background-color: transparent;
+  background-image: linear-gradient(to bottom, black, transparent);
   position: fixed;
   padding: 0rem 3rem 0 3rem;
   color: rgba(255, 255, 255, 0.669);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 10;
 }
 
 .navTransparentAnimation {
   width: 100%;
   height: 65px;
-  background-color: transparent;
+  background-image: linear-gradient(to bottom, black, transparent);
   position: fixed;
   padding: 0rem 3rem 0 3rem;
   color: rgba(255, 255, 255, 0.669);
@@ -34,11 +36,12 @@
   justify-content: space-between;
   align-items: center;
   animation: transparentbg 0.3s linear alternate both;
+  z-index: 10;
 }
 
 @keyframes blackbg {
   0% {
-    background-color: transparent;
+    background-image: linear-gradient(to bottom, black, transparent);
   }
   100% {
     background-color: black;
@@ -50,7 +53,7 @@
     background-color: black;
   }
   100% {
-    background-color: transparent;
+    bbackground-image: linear-gradient(to bottom, black, transparent);
   }
 }
 

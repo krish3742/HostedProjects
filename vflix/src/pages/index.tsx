@@ -1,38 +1,48 @@
 import axios from "axios";
 import { useEffect } from "react";
 
-import Style from "./Home.module.css";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setMoviesData, setMoviesLoading } from "@/store/features/moviesSlice";
+
+import Error from "@/components/Error";
+import Loader from "@/components/Loader";
+import MoviesData from "@/components/MoviesData";
+import RandomMovie from "@/components/RandomMovie";
 
 export default function Home() {
-  const fetch = async () => {
+  const dispatch = useAppDispatch();
+  const moviesData = useAppSelector((state) => state.movies.moviesData);
+  const moviesLoading = useAppSelector((state) => state.movies.moviesLoading);
+  const fetchData = async () => {
     const options = {
       method: "GET",
-      url: "https://ott-details.p.rapidapi.com/advancedsearch",
-      params: {
-        genre: "Comedy",
-        language: "hindi",
-        type: "movie",
-        sort: "latest",
-      },
+      url: "https://movies-api14.p.rapidapi.com/home",
       headers: {
         "x-rapidapi-key": "4d1bd655e7msh5086aad4d2b3127p190718jsnfe55a3957a04",
-        "x-rapidapi-host": "ott-details.p.rapidapi.com",
+        "x-rapidapi-host": "movies-api14.p.rapidapi.com",
       },
     };
-
     try {
       const response = await axios.request(options);
-      console.log(response.data);
+      dispatch(setMoviesData(response.data));
+      dispatch(setMoviesLoading(false));
     } catch (error) {
-      console.error(error);
+      dispatch(setMoviesLoading(false));
     }
   };
   useEffect(() => {
-    fetch();
+    fetchData();
   }, []);
+  if (moviesLoading) {
+    return <Loader />;
+  }
+  if (!moviesData.length) {
+    return <Error />;
+  }
   return (
     <>
-      <div className={Style.container}></div>
+      <RandomMovie />
+      <MoviesData />
     </>
   );
 }
