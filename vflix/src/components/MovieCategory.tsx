@@ -12,24 +12,27 @@ export default function MovieCategory({
   movieCategory: any;
 }) {
   const [page, setPage] = useState(0);
+  const [animation, setAnimation] = useState("none");
   const [enableLeftButton, setEnableLeftButton] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const visibleMovies = Math.floor(screenWidth / 225);
   const moviesArray = [];
   for (let i = 0; i < movieCategory.movies.length; i++) {
     const temp = [];
+    if (i + visibleMovies > movieCategory.movies.length) {
+      i = i - (i + visibleMovies - movieCategory.movies.length);
+    }
     for (let j = 1; j <= visibleMovies; j++) {
       temp.push(movieCategory.movies[i]);
       if (j != visibleMovies) {
         i++;
-      } else if (i > movieCategory.movies.length) {
-        break;
       }
     }
     moviesArray.push(temp);
   }
   const handleLeftClickButton = (e: any) => {
     e.preventDefault();
+    setAnimation("left");
     setPage((value: number) => {
       if (value === 0) {
         return moviesArray.length - 1;
@@ -40,6 +43,7 @@ export default function MovieCategory({
   const handleRightClickButton = (e: any) => {
     e.preventDefault();
     setEnableLeftButton(true);
+    setAnimation("right");
     setPage((value: number) => {
       if (value === moviesArray.length - 1) {
         return 0;
@@ -51,7 +55,10 @@ export default function MovieCategory({
     window.addEventListener("resize", () => {
       setScreenWidth(window.innerWidth);
     });
-  }, []);
+    setTimeout(() => {
+      setAnimation("none");
+    }, 500);
+  }, [animation]);
   return (
     <div className={Style.container}>
       <div className={Style.leftdiv}></div>
@@ -60,7 +67,7 @@ export default function MovieCategory({
         <div className={Style.moviesContainer}>
           {moviesArray[page].map((movie: any, index: number) => {
             if (index < visibleMovies) {
-              return <Movie movie={movie} key={index} />;
+              return <Movie movie={movie} key={index} animation={animation} />;
             }
           })}
           {enableLeftButton && (
@@ -89,6 +96,7 @@ export default function MovieCategory({
                     ? moviesArray[page - 1]
                     : moviesArray[moviesArray.length - 1]
                 }
+                animation={animation}
               />
             </>
           )}
@@ -116,6 +124,7 @@ export default function MovieCategory({
                 ? moviesArray[0]
                 : moviesArray[page + 1]
             }
+            animation={animation}
           />
         </div>
       </div>
