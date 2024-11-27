@@ -33,6 +33,7 @@ router.post("/login", async (req, res, next) => {
     const token = jwt.sign({ id: checkUserExits._id }, secretKey);
     res.cookie("token", token, {
       httpOnly: true,
+      sameSite: "none",
       secure: true,
       maxAge: 360000,
     });
