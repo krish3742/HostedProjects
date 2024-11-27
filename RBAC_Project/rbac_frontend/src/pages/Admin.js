@@ -21,6 +21,7 @@ function Admin() {
         setUsers(response.data);
       }
     } catch (error) {
+      console.log(error);
       dispatch(setLoading(false));
       dispatch(logout());
       toast.error("Unauthorized");
