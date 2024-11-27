@@ -55,9 +55,10 @@ function Admin() {
       if (error.status === 409) {
         toast.error("You can not modify yourself!");
       } else {
+        console.log(error);
         dispatch(logout());
         toast.error("Unauthorized");
-        navigate("/");
+        // navigate("/");
       }
     }
   };
