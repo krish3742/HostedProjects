@@ -16,7 +16,7 @@ function Home() {
     await post("/auth/logout");
     dispatch(setLoading(false));
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
   };
   const handleAdminClick = (e) => {
     navigate("/admin");

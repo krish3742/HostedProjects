@@ -24,10 +24,10 @@ function App() {
           <Route index element={<Admin />}></Route>
         </Route>
         <Route path="/" element={<PublicLayout />}>
-          <Route path="login" element={<Login />}></Route>
+          <Route index element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>
         </Route>
-        <Route path="*" element={<Navigate to="/auth/register" />}></Route>
+        <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
       {loading && <Loader />}
     </BrowserRouter>

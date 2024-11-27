@@ -24,7 +24,7 @@ function Admin() {
       dispatch(setLoading(false));
       dispatch(logout());
       toast.error("Unauthorized");
-      navigate("/login");
+      navigate("/");
     }
   };
   const handleLogoutClick = async (e) => {
@@ -33,7 +33,7 @@ function Admin() {
     await post("/auth/logout");
     dispatch(setLoading(false));
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
   };
   const handleUserClick = (e) => {
     navigate("/user");
@@ -56,7 +56,7 @@ function Admin() {
       } else {
         dispatch(logout());
         toast.error("Unauthorized");
-        navigate("/login");
+        navigate("/");
       }
     }
   };
@@ -76,7 +76,7 @@ function Admin() {
       } else {
         dispatch(logout());
         toast.error("Unauthorized");
-        navigate("/login");
+        navigate("/");
       }
     }
   };

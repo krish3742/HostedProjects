@@ -37,7 +37,7 @@ function Register() {
       if (user.status === 200) {
         dispatch(setLoading(false));
         toast.success("Registered successfully");
-        navigate("/login");
+        navigate("/");
       }
     } catch (error) {
       dispatch(setLoading(false));
@@ -124,7 +124,7 @@ function Register() {
           </form>
           <p className={Style.linkmessage}>
             Already registered?{" "}
-            <a href="/login" className={Style.link}>
+            <a href="/" className={Style.link}>
               Login here
             </a>
           </p>
