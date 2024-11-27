@@ -25,7 +25,7 @@ function Admin() {
       dispatch(setLoading(false));
       dispatch(logout());
       toast.error("Unauthorized");
-      navigate("/");
+      // navigate("/");
     }
   };
   const handleLogoutClick = async (e) => {
