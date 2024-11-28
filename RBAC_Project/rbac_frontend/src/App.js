@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 
-import Home from "./pages/Home";
+import User from "./pages/User";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -18,7 +18,7 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/user" element={<UserLayout />}>
-          <Route index element={<Home />}></Route>
+          <Route index element={<User />}></Route>
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Admin />}></Route>

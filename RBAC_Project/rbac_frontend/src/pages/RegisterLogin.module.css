@@ -75,3 +75,9 @@
 .link:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 410px) {
+  .container {
+    width: 90%;
+  }
+}

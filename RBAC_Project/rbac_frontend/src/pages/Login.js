@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [flag, setFlag] = useState(true);
   const initialValues = { email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrorsExist, setFormErrorsExist] = useState(true);
@@ -31,6 +32,7 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault();
     setFormErrorsExist(validate(formValues));
+    setFlag(!flag);
   };
   const loginUser = async () => {
     try {
@@ -59,7 +61,7 @@ function Login() {
       dispatch(setLoading(true));
       loginUser();
     }
-  }, [formErrorsExist]);
+  }, [formErrorsExist, flag]);
   return (
     <>
       <div className={Style.loginRegisterContainer}>

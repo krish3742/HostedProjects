@@ -4,9 +4,9 @@ import { logout } from "../redux/slice/AuthSlice";
 import { post } from "../services/ApiEndpoint";
 import { useNavigate } from "react-router-dom";
 
-import Style from "./Home.module.css";
+import Style from "./User.module.css";
 
-function Home() {
+function User() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
@@ -40,4 +40,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default User;

@@ -43,3 +43,9 @@
   border: none;
   cursor: pointer;
 }
+
+@media (max-width: 410px) {
+  .container {
+    width: 90%;
+  }
+}
