@@ -86,57 +86,62 @@ function Admin() {
   }, [refresh]);
   return (
     <>
-      <div className={Style.adminContainer}>
-        <div className={Style.container}>
-          <h2 className={Style.heading}>Manage user</h2>
-          <table className={Style.table}>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {!!users &&
-                users.map((user, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{user.name}</td>
-                      <td>{user.email}</td>
-                      <td>
-                        <select
-                          name="role"
-                          id="role"
-                          className={Style.select}
-                          value={user.role}
-                          onChange={(e) => handleRoleChange(user._id, e)}
-                        >
-                          <option value="User">User</option>
-                          <option value="Admin">Admin</option>
-                        </select>
-                      </td>
-                      <td>
-                        <button
-                          className={Style.button}
-                          onClick={(e) => handleDeleteClick(user._id, e)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
-          <div className={Style.buttonContainer}>
-            <button className={Style.logoutButton} onClick={handleLogoutClick}>
-              Logout
-            </button>
-            <button className={Style.button} onClick={handleUserClick}>
-              Go to User
-            </button>
+      <div className={Style.overflow}>
+        <div className={Style.adminContainer}>
+          <div className={Style.container}>
+            <h2 className={Style.heading}>Manage user</h2>
+            <table className={Style.table}>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {!!users &&
+                  users.map((user, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>
+                          <select
+                            name="role"
+                            id="role"
+                            className={Style.select}
+                            value={user.role}
+                            onChange={(e) => handleRoleChange(user._id, e)}
+                          >
+                            <option value="User">User</option>
+                            <option value="Admin">Admin</option>
+                          </select>
+                        </td>
+                        <td>
+                          <button
+                            className={Style.button}
+                            onClick={(e) => handleDeleteClick(user._id, e)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+            <div className={Style.buttonContainer}>
+              <button
+                className={Style.logoutButton}
+                onClick={handleLogoutClick}
+              >
+                Logout
+              </button>
+              <button className={Style.button} onClick={handleUserClick}>
+                Go to User
+              </button>
+            </div>
           </div>
         </div>
       </div>

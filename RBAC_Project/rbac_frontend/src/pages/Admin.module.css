@@ -1,3 +1,8 @@
+.overflow {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
 .adminContainer {
   width: 100%;
   height: 100vh;
@@ -7,7 +12,7 @@
   background-color: antiquewhite;
   padding-left: 10px;
   padding-right: 10px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .container {
@@ -85,4 +90,11 @@
   background-color: blue;
   border: none;
   cursor: pointer;
+}
+
+@media (max-width: 670px) {
+  .adminContainer {
+    width: fit-content;
+    height: 100vh;
+  }
 }
