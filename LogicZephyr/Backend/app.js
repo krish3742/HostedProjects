@@ -6,8 +6,13 @@ const createHttpError = require("http-errors");
 const taskRouter = require("./routes/task.js");
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN_URL,
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("You are in server");
