@@ -42,9 +42,8 @@ const TaskManager = () => {
       setNewTask({ title: "", description: "" });
       fetchTasks();
     } catch (error) {
-      toast.error("Internal server error!");
-    } finally {
       setLoading(false);
+      toast.error("Internal server error!");
     }
   };
 
@@ -54,9 +53,8 @@ const TaskManager = () => {
       await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tasks/${id}`);
       fetchTasks();
     } catch (error) {
-      toast.error("Internal server error!");
-    } finally {
       setLoading(false);
+      toast.error("Internal server error!");
     }
   };
 
@@ -69,9 +67,8 @@ const TaskManager = () => {
       );
       fetchTasks();
     } catch (error) {
-      toast.error("Internal server error!");
-    } finally {
       setLoading(false);
+      toast.error("Internal server error!");
     }
   };
 
