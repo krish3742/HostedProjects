@@ -1,6 +1,6 @@
 # Task Manager Backend
 
-This is the backend for a Task Manager application, built with Node.js, Express, and MongoDB. It provides APIs for managing tasks, users, authentication, and more.
+This is the backend for a Task Manager application, built with Node.js, Express, and MongoDB. It provides APIs for managing tasks.
 
 ## Features
 

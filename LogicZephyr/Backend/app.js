@@ -37,7 +37,7 @@ app.use((error, req, res, next) => {
 
 const PORT = process.env.PORT;
 const connectionString = process.env.CONNECTION_STRING;
-console.log(connectionString);
+
 (async () => {
   try {
     await mongoose.connect(connectionString);
