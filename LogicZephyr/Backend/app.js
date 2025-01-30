@@ -2,6 +2,8 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const createHttpError = require("http-errors");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const taskRouter = require("./routes/task.js");
 
@@ -35,7 +37,7 @@ app.use((error, req, res, next) => {
 
 const PORT = process.env.PORT;
 const connectionString = process.env.CONNECTION_STRING;
-
+console.log(connectionString);
 (async () => {
   try {
     await mongoose.connect(connectionString);

@@ -2,6 +2,22 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installation
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Set up environment variables:
+
+   Create a `.env` file in the root directory and configure the following:
+
+   ```env
+    REACT_APP_BACKEND_URL=Backend_URL
+   ```
+
 ## Available Scripts
 
 In the project directory, you can run:
