@@ -1,10 +1,10 @@
-# Task Manager Backend
+# Branch Manager Backend
 
-This is the backend for a Task Manager application, built with Node.js, Express, and MongoDB. It provides APIs for managing tasks.
+This is the backend for a Branch Manager application, built with Node.js, Express, and MongoDB. It provides APIs for managing branchs.
 
 ## Features
 
-- **Task Management**: Create, read, update, and delete tasks.
+- **Branch Management**: Create, read, update, and delete tasks.
 - **Error Handling**: Proper error responses for API failures.
 
 ## Tech Stack
@@ -28,6 +28,10 @@ This is the backend for a Task Manager application, built with Node.js, Express,
     PORT=PORT_NO
     CONNECTION_STRING=MongoDB_Connection_String
     CORS_ORIGIN_URL=Frontend_URL
+   SECRET_KEY=KEY
+   CLOUDINARY_CLOUD_NAME=Cloud_Name
+   CLOUDINARY_API_KEY=API_Key
+   CLOUDINARY_API_SECRET=API_Secret
    ```
 
 3. Start the server:
@@ -40,11 +44,15 @@ This is the backend for a Task Manager application, built with Node.js, Express,
 
 ### Tasks
 
-- **GET** `/api/tasks` - Get all tasks
-- **POST** `/api/tasks` - Create a new task
-- **PATCH** `/api/tasks/:id/complete` - Complete a task by ID
-- **PUT** `/api/tasks/:id` - Update a task by ID
-- **DELETE** `/api/tasks/:id` - Delete a task by ID
+- **GET** `/api/getAllBranches` - Get all tasks
+- **POST** `/api/createBranch` - Create a new Branch
+- **PUT** `/api/updateBranch/:id` - Update a Branch by ID
+- **DELETE** `/api/deleteBranch/:id` - Delete a Branch by ID
+
+### Authentication
+
+- **POST** `/auth/register` - Register User
+- **POST** `/auth/login` - Login User
 
 ## License
 

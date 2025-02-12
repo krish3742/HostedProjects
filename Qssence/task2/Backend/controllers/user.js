@@ -8,6 +8,15 @@ module.exports.registerUser = async (req, res, next) => {
   try {
     const name = req.body.name;
     const email = req.body.email;
+    const checkUserExits = await User.findOne({ email });
+    if (checkUserExits) {
+      const resp = {
+        status: "Conflict",
+        message: "User already exists",
+      };
+      res.status(409).send(resp);
+      return;
+    }
     let password = await bcrypt.hash(req.body.password, 12);
     const user = await User.create({ email, name, password });
     const resp = {
@@ -39,7 +48,7 @@ module.exports.loginUser = async (req, res, next) => {
         status: "Error",
         message: "Password mismatch",
       };
-      res.status(401).send(resp);
+      res.status(404).send(resp);
       return;
     }
     const token = jwt.sign({ userId: user._id }, secretKey, {
