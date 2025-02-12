@@ -96,7 +96,7 @@ function TaskList({ tasks, addTask, updateTask, deleteTask }) {
           flex: 1,
           px: 3,
           pb: 3,
-          bgcolor: "#fafafa",
+          bgcolor: "white",
         }}
       >
         <List>
