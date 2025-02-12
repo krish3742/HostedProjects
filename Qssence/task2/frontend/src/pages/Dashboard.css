@@ -1,0 +1,148 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.dashboard {
+  width: 100%;
+  display: flex;
+}
+
+.main-content {
+  width: 100%;
+  padding: 20px;
+}
+
+.heading-button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  margin-top: 0;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.logout-button {
+  padding: 10px;
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+header h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.branch-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.branch-form input,
+.branch-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.branch-form button {
+  padding: 10px;
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.branch-form button:hover {
+  background-color: #34495e;
+}
+
+.branch-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+.branch-table th,
+.branch-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.9rem;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.branch-table td {
+  height: 7.5rem;
+}
+
+.branch-table th {
+  background-color: #f9f9f9;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.branch-table td button {
+  height: min-content;
+  padding: 5px 10px;
+  border: none;
+  background-color: #2c3e50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.branch-table td button:hover {
+  background-color: #34495e;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+}
+
+@media (min-width: 1024px) {
+  .branch-form input,
+  .branch-form textarea {
+    font-size: 1.2rem;
+  }
+
+  .branch-table th,
+  .branch-table td {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .branch-table th,
+  .branch-table td {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .image {
+    height: 50px;
+    width: 50px;
+  }
+}
