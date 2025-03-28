@@ -113,17 +113,37 @@ const TypingMarkdown = memo(
 );
 
 const ChatInterface = () => {
+  const scrollRef = useRef(null);
   const textareaRef = useRef(null);
+  const lastScrollTopRef = useRef(0);
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isUserScrolledUp, setIsUserScrolledUp] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const handleScroll = useCallback(() => {
+    if (scrollRef.current) {
+      const currentScrollTop = scrollRef.current.scrollTop;
+      const isAtBottom =
+        scrollRef.current.scrollHeight - scrollRef.current.clientHeight <=
+        currentScrollTop + 5;
+
+      if (!isAtBottom && currentScrollTop < lastScrollTopRef.current) {
+        setIsUserScrolledUp(true);
+      } else if (isAtBottom) {
+        setIsUserScrolledUp(false);
+      }
+
+      lastScrollTopRef.current = currentScrollTop;
+    }
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
@@ -131,13 +151,25 @@ const ChatInterface = () => {
 
   useEffect(() => {
     const scrollInterval = setInterval(() => {
-      if (isTyping) {
+      if (isTyping && !isUserScrolledUp) {
         chatContainerRef.current?.scrollIntoView({ behavior: "smooth" });
       }
     }, 100);
 
     return () => clearInterval(scrollInterval);
-  }, [isTyping]);
+  }, [isTyping, isUserScrolledUp]);
+
+  useEffect(() => {
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (scrollElement) {
+        scrollElement.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   // Auto-resize textarea based on content
   useEffect(() => {
@@ -163,10 +195,15 @@ const ChatInterface = () => {
         content: response.data,
       };
       setMessages((prev) => [...prev, aiResponse]);
-      setIsTyping(true);
     } catch (error) {
-      console.error("Error reviewing code:", error);
+      const aiResponse = {
+        id: messages.length + 2,
+        role: "assistant",
+        content: "Please try again. Error occurred!",
+      };
+      setMessages((prev) => [...prev, aiResponse]);
     } finally {
+      setIsTyping(true);
       setIsLoading(false);
     }
   };
@@ -197,7 +234,7 @@ const ChatInterface = () => {
 
   return (
     <div className="chat-container">
-      <div className="messages-outer-container">
+      <div className="messages-outer-container" ref={scrollRef}>
         <div className="messages-inner-container">
           {messages.length === 0 ? (
             <div className="welcome-container">Hi, How can I help you?</div>
