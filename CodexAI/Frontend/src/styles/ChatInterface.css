@@ -360,3 +360,17 @@
 .send-button:disabled {
   background-color: var(--border-color);
 }
+
+.generating-container {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2.5px;
+  color: var(--text-color);
+}
+
+.generating-container:hover {
+  background-color: var(--message-user-bg);
+}

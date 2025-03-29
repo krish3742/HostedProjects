@@ -1,14 +1,14 @@
 import axios from "axios";
 import remarkGfm from "remark-gfm";
 import Markdown from "react-markdown";
-import { SendIcon, UserIcon, BotIcon } from "./Icons";
+import { BotIcon, SendIcon, UserIcon, LoadingIcon } from "./Icons";
 import { useState, useRef, useEffect, memo, useCallback } from "react";
 
 import Loader from "./Loader";
 
 import "../styles/ChatInterface.css";
 
-const CodeBlock = ({ children, className }) => {
+const CodeBlock = ({ children, className, isTyping }) => {
   const [copied, setCopied] = useState(false);
   const language = className ? className.replace("language-", "") : "plaintext";
 
@@ -21,15 +21,15 @@ const CodeBlock = ({ children, className }) => {
 
   return (
     <div className="code-block-container">
-      <button className="copy-btn" onClick={handleCopy}>
-        {copied ? "Copied!" : "Copy"}
+      <button className="copy-btn" onClick={handleCopy} disabled={isTyping}>
+        {copied ? "Copied" : "Copy"}
       </button>
       <div className="code-block">{children}</div>
     </div>
   );
 };
 
-const MemoizedMarkdown = memo(({ content }) => {
+const MemoizedMarkdown = memo(({ content, isTyping = false }) => {
   return (
     <Markdown
       remarkPlugins={[remarkGfm]}
@@ -37,7 +37,7 @@ const MemoizedMarkdown = memo(({ content }) => {
         code: ({ node, inline, className, children, ...props }) => {
           if (!inline && className) {
             return (
-              <CodeBlock className={className}>
+              <CodeBlock className={className} isTyping={isTyping}>
                 {String(children).trim()}
               </CodeBlock>
             );
@@ -56,14 +56,23 @@ const MemoizedMarkdown = memo(({ content }) => {
 });
 
 const TypingMarkdown = memo(
-  ({ text, onTypingComplete }) => {
+  ({ text, onTypingComplete, stopTyping, onStopTyping }) => {
     const typingRef = useRef(null);
     const fullTextRef = useRef(text);
     const [index, setIndex] = useState(0);
     const isTypingCompleteRef = useRef(false);
     const [typedText, setTypedText] = useState("");
 
-    // Only reset typing when the text prop actually changes
+    // When stopTyping becomes true, we need to capture the current typedText
+    useEffect(() => {
+      if (stopTyping && !isTypingCompleteRef.current) {
+        clearTimeout(typingRef.current);
+        isTypingCompleteRef.current = true;
+        onStopTyping(typedText); // Send back the currently typed text
+        onTypingComplete && onTypingComplete();
+      }
+    }, [stopTyping, typedText, onStopTyping, onTypingComplete]);
+
     useEffect(() => {
       if (fullTextRef.current !== text) {
         fullTextRef.current = text;
@@ -74,42 +83,32 @@ const TypingMarkdown = memo(
     }, [text]);
 
     useEffect(() => {
-      // Only continue typing if not finished
-      if (index < fullTextRef.current.length && !isTypingCompleteRef.current) {
-        startTyping();
-      } else if (index >= fullTextRef.current.length) {
+      if (isTypingCompleteRef.current) {
+        return;
+      }
+
+      if (index < fullTextRef.current.length) {
+        typingRef.current = setTimeout(() => {
+          setTypedText((prev) => prev + fullTextRef.current.charAt(index));
+          setIndex((prevIndex) => prevIndex + 1);
+        }, 30);
+      } else {
         isTypingCompleteRef.current = true;
         onTypingComplete && onTypingComplete();
       }
 
       return () => clearTimeout(typingRef.current);
-    }, [index]);
-
-    const startTyping = () => {
-      typingRef.current = setTimeout(
-        typeNextChar,
-        fullTextRef.current.charAt(index) === "\n" ? 500 : 1
-      );
-    };
-
-    const typeNextChar = () => {
-      if (index < fullTextRef.current.length) {
-        setTypedText((prev) => prev + fullTextRef.current.charAt(index));
-        setIndex((prevIndex) => prevIndex + 1);
-      }
-    };
+    }, [index, onTypingComplete]);
 
     return (
       <div className="typewriter">
-        <MemoizedMarkdown content={typedText} />
+        <MemoizedMarkdown content={typedText} isTyping={true} />
       </div>
     );
   },
-  // Strict comparison function to prevent unnecessary rerenders
-  (prevProps, nextProps) => {
-    // Only rerender if the text has actually changed
-    return prevProps.text === nextProps.text;
-  }
+  (prevProps, nextProps) =>
+    prevProps.text === nextProps.text &&
+    prevProps.stopTyping === nextProps.stopTyping
 );
 
 const ChatInterface = () => {
@@ -122,6 +121,7 @@ const ChatInterface = () => {
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [stopTyping, setStopTyping] = useState(false);
   const [isUserScrolledUp, setIsUserScrolledUp] = useState(false);
 
   const scrollToBottom = () => {
@@ -144,6 +144,30 @@ const ChatInterface = () => {
       lastScrollTopRef.current = currentScrollTop;
     }
   }, []);
+
+  const handleStopGenerating = (e) => {
+    e.preventDefault();
+    setStopTyping(true);
+  };
+
+  const handleStopTypingWithText = (currentTypedText) => {
+    setMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages];
+      if (updatedMessages.length > 0) {
+        const lastMessage = updatedMessages[updatedMessages.length - 1];
+        if (lastMessage.role === "assistant") {
+          updatedMessages[updatedMessages.length - 1] = {
+            ...lastMessage,
+            content: currentTypedText,
+          };
+        }
+      }
+      return updatedMessages;
+    });
+
+    setIsTyping(false);
+    setStopTyping(false);
+  };
 
   useEffect(() => {
     scrollToBottom();
@@ -171,7 +195,6 @@ const ChatInterface = () => {
     };
   }, []);
 
-  // Auto-resize textarea based on content
   useEffect(() => {
     const textarea = textareaRef.current;
     if (textarea) {
@@ -205,6 +228,7 @@ const ChatInterface = () => {
     } finally {
       setIsTyping(true);
       setIsLoading(false);
+      setStopTyping(false);
     }
   };
 
@@ -214,7 +238,6 @@ const ChatInterface = () => {
       return;
     }
 
-    // Add user message
     const userMessage = {
       id: messages.length + 1,
       role: "user",
@@ -223,7 +246,6 @@ const ChatInterface = () => {
 
     setMessages([...messages, userMessage]);
 
-    // Reset textarea height
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
     }
@@ -255,12 +277,30 @@ const ChatInterface = () => {
                   <div className="ai-message-content">
                     {index === messages.length - 1 ? (
                       <>
-                        <TypingMarkdown
-                          key={message.id}
-                          id={message.id}
-                          text={message.content}
-                          onTypingComplete={() => setIsTyping(false)}
-                        />
+                        {isTyping ? (
+                          <>
+                            <TypingMarkdown
+                              key={message.id}
+                              text={message.content}
+                              stopTyping={stopTyping}
+                              onStopTyping={handleStopTypingWithText}
+                              onTypingComplete={() => setIsTyping(false)}
+                            />
+                            {!stopTyping && isTyping && (
+                              <button
+                                onClick={handleStopGenerating}
+                                className="generating-container"
+                              >
+                                <div>
+                                  <LoadingIcon />
+                                </div>
+                                <span>Stop generating</span>
+                              </button>
+                            )}
+                          </>
+                        ) : (
+                          <MemoizedMarkdown content={message.content} />
+                        )}
                         <div ref={chatContainerRef} />
                       </>
                     ) : (
